@@ -67,16 +67,41 @@ const checkWinner = () => {
         let posVal2 = boxes[pattern[1]].innerText;
         let posVal3 = boxes[pattern[2]].innerText;
 
-
         if (posVal1 != "" && posVal2 != "" && posVal3 != "") {
 
             if (posVal1 === posVal2 && posVal2 === posVal3) {
-                console.log("Winner", posVal1);
                 showWinner(posVal1);
+
+
+                var end = Date.now() + (15 * 1000);
+
+                // go Buckeyes!
+                var colors = ['#EFCB68', '#ff0054', '#ffff' ];
+                
+                (function frame() {
+                  confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                  });
+                  confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                  });
+                
+                  if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                  }
+                }());
             }
         }
     }
 }
 
-newGameBtn.addEventListener('click', resetButton);
-resetButton.addEventListener('click', resetButton);
+newGameBtn.addEventListener('click', resetbtn);
+resetButton.addEventListener('click', resetbtn);
